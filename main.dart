@@ -1,21 +1,37 @@
-class GreatestCommonDivisor {
-  void greatestCommonDivisor(int a, int b) {
-    if (a == 0) {
-      print(b);
+import 'dart:math';
+
+class GreatestCommonDivisorAndLeastCommonMultiple {
+  int numberA = Random().nextInt(100);
+  int numberB = Random().nextInt(100);
+  void greatestCommonDivisor() {
+    int gcd;
+    print('НОД двух чисел:\n');
+    print('Число a = $numberA\nЧисло b = $numberB');
+    double leastCommonMultiple;
+    int lcmA = numberA;
+    int lcmB = numberB;
+    if (numberA == 0) {
+      gcd = numberB;
     } else {
-      while (b != 0) {
-        if (a > b) {
-          a = a - b;
+      while (numberB != 0) {
+        if (numberA > numberB) {
+          numberA = numberA - numberB;
         } else {
-          b = b - a;
+          numberB = numberB - numberA;
         }
       }
-      print(a);
+      gcd = numberA;
     }
+
+    leastCommonMultiple = (lcmA * lcmB) / gcd;
+
+    print('НОД = $gcd');
+    print('НОК = $leastCommonMultiple');
   }
 }
 
 void main() {
-  GreatestCommonDivisor gcd = GreatestCommonDivisor();
-  gcd.greatestCommonDivisor(26, 65);
+  GreatestCommonDivisorAndLeastCommonMultiple gcd =
+      GreatestCommonDivisorAndLeastCommonMultiple();
+  gcd.greatestCommonDivisor();
 }
