@@ -1,11 +1,31 @@
-class GreatestCommonDivisor {
-  double numberA = 116;
-  double numberB = 48;
+import 'dart:io';
 
+//для начала нам надо попросить у пользователя два числа
+
+//число А
+double numberA() {
+  print('Введите число А');
+  double numberA = double.parse(stdin.readLineSync() ?? '0.0');
+  return numberA;
+}
+
+//число В
+double numberB() {
+  print('Введите число B');
+  double numberB = double.parse(stdin.readLineSync() ?? '0.0');
+  return numberB;
+}
+
+//в этом классе будут основные методы НОД и НОК
+class GreatestCommonDivisor {
+  double a = numberA();
+  double b = numberB();
+
+//метод получения НОД
   double greatestCommonDivisor() {
-    double gcdA =
-        numberA; //так как переменные перезапишутся после использования метода greatestCommonDivisor() то придется их положить в новую переменную
-    double gcdB = numberB;
+    //так как переменные а и b перезапишутся после использования метода greatestCommonDivisor() то придется их положить в новую переменную
+    double gcdA = a;
+    double gcdB = b;
     double gcd; //в эту переменную я положу наибольший общий делитель
 //тут представлена формула Эвклида -- из большего числа вычитается меньшее, пока одно из чисел не становится равным 0
     if (gcdA == 0) {
@@ -25,22 +45,20 @@ class GreatestCommonDivisor {
 
 //этот метод возвращает НОК для двух чисел
   double lcm() {
-    double lcm = (numberA * numberB) / greatestCommonDivisor();
+    double lcm = (a * b) / greatestCommonDivisor();
     return lcm;
   }
 
+// этот метод нужен для вывода в консоль результатов НОД и НОК
   void printMessage() {
-    print('Число a = ${numberA.toInt()}\nЧисло b = ${numberB.toInt()}\n');
     print(
         'Наибольший общий делитель двух чисел = ${greatestCommonDivisor().toInt()}\n');
     print('Наименьшее общее кратное = ${lcm().toInt()}\n');
   }
-}
 
 //этот метод возвращает простые множители числа А
-class LeastCommonMultiple extends GreatestCommonDivisor {
   void getSimpleNumberA() {
-    double lcmA = numberA;
+    double lcmA = a;
     int divisor = 2;
     List allDividers = [];
     while (lcmA != 1) {
@@ -59,7 +77,7 @@ class LeastCommonMultiple extends GreatestCommonDivisor {
 
 //этот метод возвращает простые множители числа B
   void getSimpleNumberB() {
-    double lcmB = numberB;
+    double lcmB = b;
     int divisor = 2;
     List allDividers = [];
     while (lcmB != 1) {
@@ -77,13 +95,11 @@ class LeastCommonMultiple extends GreatestCommonDivisor {
   }
 }
 
-//этот метод создает экземпляры классов и их методы для вывода в консоль результатов
 void runExercise1() {
   GreatestCommonDivisor greatestCommonDivisor = GreatestCommonDivisor();
   greatestCommonDivisor.greatestCommonDivisor();
   greatestCommonDivisor.lcm();
   greatestCommonDivisor.printMessage();
-  LeastCommonMultiple leastCommonMultiple = LeastCommonMultiple();
-  leastCommonMultiple.getSimpleNumberA();
-  leastCommonMultiple.getSimpleNumberB();
+  greatestCommonDivisor.getSimpleNumberA();
+  greatestCommonDivisor.getSimpleNumberB();
 }
